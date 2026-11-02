@@ -1,0 +1,23 @@
+apiVersion: apps/v1  
+kind: Deployment
+
+metadata:
+  name: corso-deployment
+  namespace: corso  
+
+spec:
+  replicas: 4    #desidered state - 4 pod sempre attivi  
+  selector:
+    matchLabels:
+      app: corso-pod   #nome del pod da tenere sotto controllo
+  template:
+    metadata:
+      labels:
+        app: corso-pod
+    spec:
+      containers:
+        - name: corso-pod  
+          image: nginx:1.25 
+          ports:
+            - containerPort: 80
+    
