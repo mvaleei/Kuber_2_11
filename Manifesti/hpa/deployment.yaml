@@ -1,0 +1,35 @@
+apiVersion: apps/v1 
+kind: Deployment  
+
+metadata: 
+  name: hpa-deployment 
+  namespace: corso 
+
+spec:
+  replicas: 3   
+
+  selector:
+    matchLabels:
+      app: lezione-hpa 
+
+  template:
+    metadata:
+      labels:
+        app: lezione-hpa  
+
+    spec:
+      containers:
+        - name: lezione-hpa 
+          image: ghostmio/immo2:v2 
+
+          imagePullPolicy: Always  #controlla sempre la presenza di una nuova versione 
+
+          #risorse massime  e minime
+
+          resources:
+            requests:   #minime
+              memory: "256Mi" 
+              cpu: "200m"
+            limits:  #massime 
+              memory: 512Mi
+              cpu: "500m"
