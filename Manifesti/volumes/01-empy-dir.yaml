@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: empty-dir-nginx
+  namespace: corso
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: empty-dir-nginx
+  template:
+    metadata:
+      labels:
+        app: empty-dir-nginx
+    spec:
+      containers:
+        - name: empty-dir-nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: tmp #nome del volume del pod - che vive SOLO fino a quando il pod esiste
+              mountPath: /usr/share/nginx/html/data #cartella del container
+      volumes:
+        - name: tmp
+          emptyDir: {}
