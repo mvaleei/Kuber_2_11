@@ -1,0 +1,22 @@
+apiVersion: apps/v1 
+kind: Deployment  
+metadata:
+  name: corso-service-deployment-java
+  namespace: corso  
+
+spec:
+  replicas: 4
+
+  selector: 
+    matchLabels:
+      app: corso-pod-service-java 
+  
+  template:
+    metadata:
+      labels:
+        app: corso-pod-service-java 
+
+    spec:
+      containers:
+        - name: corso-pod-service-java 
+          image: ghostmio/angular:v1  

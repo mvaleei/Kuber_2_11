@@ -1,0 +1,13 @@
+apiVersion: v1 
+kind: Pod
+
+metadata:
+  name: nginx-pod-corso
+  namespace: corso 
+
+spec:
+  containers:
+    - name: nginx-container  #nome del container
+      image: nginx:1.25   #nome dell'immagine da caricare
+      ports:
+        - containerPort: 80

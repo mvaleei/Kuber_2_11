@@ -1,0 +1,26 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler   
+
+metadata:
+  name: hpa-hpa  
+  namespace: corso    
+
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1 
+    kind: Deployment 
+    name: hpa-deployment    #deployment di cui effettaure lo scaling orizzontale 
+  minReplicas: 1
+  maxReplicas: 10  
+
+  metrics:
+  - type: Resource 
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 10
+  
+
+
+

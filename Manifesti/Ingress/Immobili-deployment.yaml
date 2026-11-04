@@ -1,0 +1,24 @@
+apiVersion: apps/v1  
+kind: Deployment   
+
+metadata:
+  name: immobili-api-deployment  
+  namespace: corso   
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: immobili-api
+  template:
+    metadata:
+      labels:
+        app: immobili-api  
+
+    spec:
+      containers:
+        - name: immobili-api
+          image: ghostmio/immo2:v2
+          ports:
+            - containerPort: 8080

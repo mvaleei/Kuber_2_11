@@ -1,0 +1,19 @@
+apiVersion: v1 
+kind: Service 
+
+metadata:
+  name: hpa-service
+  namespace: corso 
+
+
+spec:
+  selector:
+    app: lezione-hpa   
+
+  ports:
+    - protocol: TCP 
+      port: 80   #porta del container
+      targetPort: 8080  #porta del servizio con cuisi espone il servizio
+      nodePort: 30110   #porta con cui si "esporrebbe" vero l'esterno il servizio
+  type: NodePort
+      

@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: corso-service
+  namespace: corso
+
+spec:
+  selector:
+    app: corso-pod-service
+
+  ports:
+    - port: 80 #porta del servizio (8080)
+      targetPort: 80 #porta verso cui si convoglia il traffico nel pod
+      nodePort: 30100
+  #type: ClusterIP  #il container è accessibile sono all'interno del cluster
+  type: NodePort #il container è disponibile verso l'esterno del cluster
+
